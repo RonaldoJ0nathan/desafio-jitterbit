@@ -41,11 +41,13 @@ model Order {
 
 model Item {
   orderId   String
-  productId Int     @id @default(autoincrement())
+  productId Int
   quantity  Int
   price     Int
   order     Order   @relation(fields: [orderId], references: [orderId], onDelete: Cascade)
 
   // map
   @@map("items")
+
+  @@unique([orderId, productId])
 }
